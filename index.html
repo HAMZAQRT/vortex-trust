@@ -1,0 +1,1499 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>VORTEX | بروتوكول الوساطة المالية المشفر | تطبيق رسمي</title>
+
+  <!-- SEO -->
+  <meta name="description" content="VORTEX بروتوكول وساطة مالية مشفر لبيع وشراء الحسابات والأصول الرقمية بضمان كامل. تطبيق رسمي متوفر على Google Play و APK و Aptoide و Uptodown.">
+  <meta name="keywords" content="VORTEX, فورتكس, وساطة مالية, ضمان, escrow, بيع حسابات, شراء حسابات, USDT, تطبيق فورتكس, Google Play, APK, Aptoide, Uptodown">
+  <meta name="author" content="VORTEX Network">
+  <meta name="theme-color" content="#00f3ff">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vortex-trust.netlify.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VORTEX | بروتوكول الوساطة المالية المشفر">
+  <meta property="og:description" content="نظام وساطة مالية متطور بضمانات كاملة. حمّل التطبيق الرسمي الآن من Google Play و APK و Aptoide و Uptodown.">
+  <meta property="og:image" content="1777083916689.png">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="VORTEX Network">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VORTEX | بروتوكول الوساطة المالية المشفر">
+  <meta name="twitter:description" content="نظام وساطة مالية متطور بضمانات كاملة. التطبيق الرسمي متاح الآن.">
+  <meta name="twitter:image" content="1777083916689.png">
+
+  <!-- PWA / Mobile App -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VORTEX">
+  <meta name="application-name" content="VORTEX">
+
+  <link rel="icon" type="image/png" href="1777083916689.png">
+  <link rel="apple-touch-icon" href="1777083916689.png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "VORTEX",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "FinanceApplication",
+    "description": "بروتوكول وساطة مالية مشفر لبيع وشراء الحسابات والأصول الرقمية.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "2547"
+    },
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.vortex.network",
+      "https://www.aptoide.com/",
+      "https://uptodown.com/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #00f3ff;
+      --primary-dim: rgba(0, 243, 255, 0.15);
+      --accent: #00ff88;
+      --danger: #ff2d55;
+      --warning: #ffd60a;
+      --purple: #bf5af2;
+      --bg: #030710;
+      --bg2: #060d1a;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --text: #c8d6e5;
+      --text-dim: #5a6a7e;
+      --glow: var(--primary);
+      --card-border: rgba(0, 243, 255, 0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      text-align: right;
+    }
+
+    /* ===== NOISE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ===== MATRIX CANVAS ===== */
+    #matrix-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.07; }
+
+    /* ===== AMBIENT ORBS ===== */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,243,255,0.08) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation: drift1 20s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(191,90,242,0.06) 0%, transparent 70%);
+      bottom: 10%; right: -100px;
+      animation: drift2 15s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,255,136,0.05) 0%, transparent 70%);
+      bottom: 40%; left: 30%;
+      animation: drift3 25s ease-in-out infinite;
+    }
+
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(80px,60px)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-60px,-40px)} }
+    @keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-80px)} }
+
+    /* ===== GRID LINES ===== */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,243,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,243,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      position: fixed; top: 0; width: 100%;
+      z-index: 1000;
+      background: rgba(3, 7, 16, 0.92);
+      backdrop-filter: blur(20px) saturate(150%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-text {
+      font-family: 'Orbitron';
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: 6px;
+      color: var(--primary);
+      text-shadow: 0 0 30px rgba(0,243,255,0.6);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    .brand-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%,100% { text-shadow: 0 0 15px rgba(0,243,255,0.4); }
+      50% { text-shadow: 0 0 30px rgba(0,243,255,0.8), 0 0 60px rgba(0,243,255,0.3); }
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    nav {
+      display: flex;
+      width: 100%;
+    }
+    .nav-item {
+      flex: 1;
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      font-family: 'Orbitron';
+      font-size: 0.5rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .nav-item i { font-size: 1rem; }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 10%; right: 10%;
+      height: 2px;
+      background: var(--glow);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      border-radius: 2px;
+    }
+    .nav-item.active { color: var(--glow); }
+    .nav-item.active::after { transform: scaleX(1); }
+    .nav-item:hover { color: var(--glow); }
+    .nav-item:hover i { transform: translateY(-2px); }
+
+    /* ===== LAYOUT ===== */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      padding: 145px 16px 60px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: linear-gradient(145deg, rgba(6,13,26,0.98), rgba(8,16,30,0.98));
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s, border-color 0.4s;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glow), transparent);
+      opacity: 0.5;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,243,255,0.08);
+      border-color: rgba(0,243,255,0.3);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 0; right: 24px;
+      background: var(--glow);
+      color: #000;
+      font-family: 'Orbitron';
+      font-size: 0.55rem;
+      font-weight: 900;
+      padding: 5px 14px;
+      border-radius: 0 0 8px 8px;
+      letter-spacing: 1px;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-visual {
+      text-align: center;
+      padding: 20px 0 30px;
+    }
+    .hex-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle, rgba(0,243,255,0.1) 0%, transparent 70%);
+      border: 2px solid rgba(0,243,255,0.3);
+      border-radius: 50%;
+      margin-bottom: 20px;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+    }
+    .hex-logo::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(0,243,255,0.1);
+      border-radius: 50%;
+      animation: spin 8s linear infinite;
+    }
+    .hex-logo::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border: 1px dashed rgba(0,243,255,0.05);
+      border-radius: 50%;
+      animation: spin 12s linear infinite reverse;
+    }
+    .hex-logo i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      filter: drop-shadow(0 0 20px var(--primary));
+    }
+
+    @keyframes float {
+      0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}
+    }
+    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    .hero-title {
+      font-family: 'Orbitron';
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 3px;
+      text-shadow: 0 0 40px rgba(0,243,255,0.4);
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      font-family: 'Share Tech Mono';
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      padding-right: 14px;
+      border-right: 3px solid var(--glow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brief {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      font-size: 0.87rem;
+      color: var(--text);
+      line-height: 2;
+      position: relative;
+    }
+    .brief::before {
+      content: '"';
+      position: absolute;
+      top: -5px; right: 15px;
+      font-size: 3rem;
+      color: rgba(0,243,255,0.15);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    /* ===== STATS ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .stat {
+      background: rgba(0,243,255,0.04);
+      border: 1px solid rgba(0,243,255,0.12);
+      border-radius: 12px;
+      padding: 18px 10px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .stat:hover {
+      background: rgba(0,243,255,0.08);
+      border-color: rgba(0,243,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,243,255,0.12);
+    }
+    .stat-num {
+      font-family: 'Orbitron';
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-shadow: 0 0 15px rgba(0,243,255,0.5);
+      line-height: 1.2;
+    }
+    .stat-lbl {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+      font-family: 'Share Tech Mono';
+    }
+
+    /* ===== BADGES ===== */
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.72rem;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+    .badge:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(0,243,255,0.05);
+      transform: translateY(-2px);
+    }
+    .badge i { color: var(--primary); }
+
+    /* ===== FORM ===== */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cyber-input {
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e0e0e0;
+      padding: 13px 16px;
+      margin-bottom: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      text-align: right;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .cyber-input:focus {
+      border-color: var(--glow);
+      box-shadow: 0 0 0 3px rgba(0,243,255,0.1), 0 0 20px rgba(0,243,255,0.2);
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+    }
+    .cyber-input::placeholder { color: var(--text-dim); }
+
+    .cyber-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--glow);
+      color: var(--glow);
+      padding: 14px 24px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s;
+    }
+    .cyber-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--glow);
+      transform: translateX(101%);
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .cyber-btn:hover::before { transform: translateX(0); }
+    .cyber-btn:hover { color: #000; box-shadow: 0 0 30px rgba(0,243,255,0.3); }
+    .cyber-btn span, .cyber-btn i { position: relative; z-index: 1; }
+
+    /* ===== STARS ===== */
+    .star-row {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .star-row input { display: none; }
+    .star-row label {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: rgba(255,255,255,0.15);
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .star-row input:checked ~ label,
+    .star-row label:hover,
+    .star-row label:hover ~ label {
+      color: var(--warning);
+      filter: drop-shadow(0 0 6px var(--warning));
+      transform: scale(1.2);
+    }
+
+    /* ===== REVIEWS ===== */
+    .review-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-right: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .review-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(0,255,136,0.3);
+      transform: translateX(-4px);
+    }
+    .review-actions {
+      position: absolute;
+      left: 12px; top: 12px;
+      display: flex;
+      gap: 8px;
+    }
+    .rev-btn {
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      transition: all 0.2s;
+    }
+    .rev-btn.edit:hover { color: var(--warning); border-color: var(--warning); box-shadow: 0 0 10px rgba(255,214,10,0.3); }
+    .rev-btn.del:hover { color: var(--danger); border-color: var(--danger); box-shadow: 0 0 10px rgba(255,45,85,0.3); }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-left: 80px;
+    }
+    .review-name { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+    .review-stars { color: var(--warning); letter-spacing: 2px; font-size: 0.8rem; }
+    .review-text { font-size: 0.88rem; color: var(--text); line-height: 1.8; }
+
+    /* ===== LEGAL ===== */
+    .legal-list { list-style: none; padding: 0; }
+    .legal-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .legal-list li:last-child { border-bottom: none; }
+    .legal-num {
+      min-width: 28px;
+      height: 28px;
+      background: rgba(255,214,10,0.1);
+      border: 1px solid rgba(255,214,10,0.3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron';
+      font-size: 0.65rem;
+      color: var(--warning);
+      font-weight: 900;
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-item { margin-bottom: 14px; }
+    .progress-header { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 6px; color: var(--text); }
+    .progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 0 10px rgba(0,243,255,0.5);
+      transition: width 1.5s cubic-bezier(0.23,1,0.32,1);
+    }
+
+    /* ===== TELEGRAM BTN ===== */
+    .tg-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0,136,204,0.15), rgba(0,136,204,0.05));
+      border: 1px solid rgba(0,136,204,0.3);
+      color: #2AABEE;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    .tg-btn:hover {
+      background: linear-gradient(135deg, rgba(0,136,204,0.25), rgba(0,136,204,0.1));
+      border-color: #2AABEE;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,136,204,0.25);
+    }
+    .tg-btn i { font-size: 1.3rem; }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 20px 0;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-dim);
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.3; display: block; }
+    .empty-state p { font-size: 0.85rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8));
+      padding: 60px 20px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-family: 'Orbitron';
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 8px;
+      color: var(--primary);
+      text-shadow: 0 0 30px rgba(0,243,255,0.5);
+      margin-bottom: 20px;
+    }
+    .online-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(0,255,136,0.07);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 30px;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+      animation: blink 1.5s infinite;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .footer-nav a {
+      padding: 6px 14px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+    .footer-nav a:hover {
+      color: var(--primary);
+      border-color: rgba(0,243,255,0.2);
+      background: rgba(0,243,255,0.05);
+    }
+    .copyright {
+      font-family: 'Share Tech Mono';
+      font-size: 0.65rem;
+      color: #2a3444;
+      line-height: 2;
+    }
+
+    /* ===== SCROLL FADE ===== */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(6,13,26,0.97);
+      border: 1px solid rgba(0,243,255,0.3);
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.85rem;
+      color: var(--primary);
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: repeat(3,1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-title { font-size: 1.4rem; }
+      .stat-num { font-size: 1.2rem; }
+    }
+
+    /* ===== GLOW BORDERS ===== */
+    .card-warn { --card-border: rgba(255,214,10,0.2); }
+    .card-warn .card-tag { background: var(--warning); }
+    .card-warn::before { background: linear-gradient(90deg, transparent, var(--warning), transparent); }
+    .card-warn h2 { border-color: var(--warning); }
+    .card-warn:hover { border-color: rgba(255,214,10,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,214,10,0.06); }
+
+    .card-green { --card-border: rgba(0,255,136,0.15); }
+    .card-green .card-tag { background: var(--accent); }
+    .card-green::before { background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .card-green h2 { border-color: var(--accent); }
+    .card-green:hover { border-color: rgba(0,255,136,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,255,136,0.06); }
+
+    .card-red { --card-border: rgba(255,45,85,0.15); }
+    .card-red .card-tag { background: var(--danger); }
+    .card-red::before { background: linear-gradient(90deg, transparent, var(--danger), transparent); }
+    .card-red h2 { border-color: var(--danger); }
+    .card-red .cyber-btn { border-color: var(--danger); color: var(--danger); }
+    .card-red .cyber-btn::before { background: var(--danger); }
+    .card-red .cyber-btn:hover { color: #fff; box-shadow: 0 0 30px rgba(255,45,85,0.3); }
+    .card-red:hover { border-color: rgba(255,45,85,0.3); }
+
+    /* ===== APP DOWNLOAD SECTION ===== */
+    .app-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 0 24px;
+      gap: 14px;
+    }
+    .app-icon-wrap {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(0,243,255,0.18), rgba(191,90,242,0.12));
+      border: 1px solid rgba(0,243,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(0,243,255,0.25), inset 0 0 30px rgba(0,243,255,0.05);
+    }
+    .app-icon-wrap img {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+    .verified-pill {
+      position: absolute;
+      bottom: -8px; right: -8px;
+      background: var(--accent);
+      color: #000;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      box-shadow: 0 0 14px var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .app-title-name {
+      font-family: 'Orbitron';
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 4px;
+    }
+    .app-meta {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono';
+    }
+    .app-meta span { display: inline-flex; align-items: center; gap: 5px; }
+    .app-meta i { color: var(--primary); }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .store-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+    .store-btn:hover::after { transform: translateX(100%); }
+    .store-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--store-color, var(--primary));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 24px rgba(0,243,255,0.12);
+    }
+    .store-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      background: var(--store-color, var(--primary));
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    .store-info { flex: 1; min-width: 0; }
+    .store-label {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono';
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .store-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-top: 2px;
+    }
+    .store-arrow {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .store-btn:hover .store-arrow {
+      transform: translateX(-6px);
+      color: var(--store-color, var(--primary));
+    }
+
+    .store-google { --store-color: #34A853; }
+    .store-apk { --store-color: #00f3ff; }
+    .store-aptoide { --store-color: #FF6F00; }
+    .store-uptodown { --store-color: #386DA7; }
+
+    .verified-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: rgba(0,255,136,0.06);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .verified-banner i { font-size: 1.1rem; }
+
+    .warning-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background: rgba(255,214,10,0.05);
+      border: 1px solid rgba(255,214,10,0.2);
+      border-radius: 10px;
+      font-size: 0.78rem;
+      color: var(--warning);
+      margin-top: 18px;
+      line-height: 1.7;
+    }
+    .warning-banner i { font-size: 1rem; margin-top: 3px; flex-shrink: 0; }
+    .warning-banner span { color: var(--text); }
+    .warning-banner strong { color: var(--warning); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0 6px;
+    }
+    .feature-tile {
+      background: rgba(0,243,255,0.03);
+      border: 1px solid rgba(0,243,255,0.1);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.3s;
+    }
+    .feature-tile:hover {
+      background: rgba(0,243,255,0.07);
+      border-color: rgba(0,243,255,0.25);
+      transform: translateY(-2px);
+    }
+    .feature-tile i {
+      color: var(--primary);
+      font-size: 1rem;
+    }
+    .feature-tile-title {
+      font-size: 0.78rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .feature-tile-desc {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* card-purple */
+    .card-purple { --card-border: rgba(191,90,242,0.2); }
+    .card-purple .card-tag { background: var(--purple); color: #fff; }
+    .card-purple::before { background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+    .card-purple h2 { border-color: var(--purple); }
+    .card-purple:hover { border-color: rgba(191,90,242,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(191,90,242,0.08); }
+
+    /* Scanline */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-bg"></div>
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div class="brand-text">VORTEX NETWORK</div>
+      <div class="brand-dot"></div>
+    </div>
+    <nav>
+      <div class="nav-item active" onclick="goTo('home','#00f3ff',this)"><i class="fas fa-terminal"></i>النظام</div>
+      <div class="nav-item" onclick="goTo('app','#bf5af2',this)"><i class="fas fa-mobile-screen"></i>التطبيق</div>
+      <div class="nav-item" onclick="goTo('escrow','#00ff88',this)"><i class="fas fa-file-signature"></i>العقود</div>
+      <div class="nav-item" onclick="goTo('legal','#ffd60a',this)"><i class="fas fa-balance-scale"></i>القانون</div>
+      <div class="nav-item" onclick="goTo('reviews-sec','#00ff88',this)"><i class="fas fa-comments"></i>المجتمع</div>
+      <div class="nav-item" onclick="goTo('support','#ff2d55',this)"><i class="fas fa-headset"></i>الدعم</div>
+    </nav>
+  </div>
+
+  <main class="main-content">
+
+    <!-- HOME -->
+    <section id="home" class="card scroll-fade">
+      <div class="card-tag">SYS_INFO</div>
+
+      <div class="hero-visual">
+        <div class="hex-logo">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="hero-title">VORTEX</div>
+        <div class="hero-sub">// SECURE ESCROW PROTOCOL //</div>
+      </div>
+
+      <h2><i class="fas fa-lock" style="color:var(--primary); font-size:0.9rem;"></i> نبذة عن البروتوكول</h2>
+      <div class="brief">
+        نظام تقني متطور من الجيل الجديد متخصص في تأمين الوساطة المالية لبيع وشراء الحسابات والأصول الرقمية. يعمل البروتوكول كطرف ثالث موثوق يضمن حق الطرفين عبر حجز المبالغ ولا يتم تحريرها إلا بعد تأكيد الاستلام.
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num" id="cnt1">0</div>
+          <div class="stat-lbl">معاملة ناجحة</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="cnt2">0%</div>
+          <div class="stat-lbl">معدل الأمان</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-lbl">دعم مستمر</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <h2 style="font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-chart-line" style="color:var(--primary); font-size:0.8rem;"></i> مؤشرات الأداء</h2>
+      <div class="progress-item">
+        <div class="progress-header"><span>نسبة رضا العملاء</span><span style="color:var(--accent)">98.7%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0" data-target="98.7"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span>سرعة معالجة العقود</span><span style="color:var(--primary)">95.2%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0" data-target="95.2"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span>معدل حل النزاعات</span><span style="color:var(--warning)">99.1%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0" data-target="99.1"></div></div>
+      </div>
+
+      <div class="badges">
+        <div class="badge"><i class="fas fa-lock"></i> تشفير متقدم</div>
+        <div class="badge"><i class="fas fa-bolt"></i> معالجة فورية</div>
+        <div class="badge"><i class="fas fa-shield-check"></i> حماية كاملة</div>
+        <div class="badge"><i class="fas fa-globe"></i> متعدد المنصات</div>
+      </div>
+
+      <hr class="divider">
+
+      <a href="#app" onclick="event.preventDefault(); goTo('app','#bf5af2', document.querySelectorAll('.nav-item')[1])" class="cyber-btn" style="border-color: var(--purple); color: var(--purple); margin-top: 4px;">
+        <i class="fas fa-download"></i><span>حمّل التطبيق الرسمي الآن</span>
+      </a>
+    </section>
+
+    <!-- APP DOWNLOAD -->
+    <section id="app" class="card card-purple scroll-fade">
+      <div class="card-tag">OFFICIAL_APP</div>
+      <h2><i class="fas fa-mobile-screen" style="color:var(--purple); font-size:0.9rem;"></i> التطبيق الرسمي لـ VORTEX</h2>
+
+      <div class="verified-banner">
+        <i class="fas fa-shield-check"></i>
+        <span>تطبيق موثّق ومُوقّع رقمياً • متاح على جميع المتاجر العالمية</span>
+      </div>
+
+      <div class="app-hero">
+        <div class="app-icon-wrap">
+          <img src="1777083916689.png" alt="VORTEX App Icon">
+          <div class="verified-pill"><i class="fas fa-check"></i></div>
+        </div>
+        <div>
+          <div class="app-title-name">VORTEX</div>
+          <div style="color: var(--text-dim); font-size: 0.78rem; margin-top: 4px;">Secure Escrow & Trading Platform</div>
+        </div>
+        <div class="app-meta">
+          <span><i class="fas fa-star"></i> 4.9</span>
+          <span><i class="fas fa-download"></i> +50K</span>
+          <span><i class="fas fa-code-branch"></i> v2.4.1</span>
+          <span><i class="fas fa-weight-hanging"></i> 18 MB</span>
+        </div>
+      </div>
+
+      <div class="store-grid">
+        <a href="https://play.google.com/store/apps/details?id=com.vortex.network" target="_blank" rel="noopener" class="store-btn store-google" onclick="trackDownload('google')">
+          <div class="store-icon"><i class="fab fa-google-play"></i></div>
+          <div class="store-info">
+            <div class="store-label">GET IT ON</div>
+            <div class="store-name">Google Play</div>
+          </div>
+          <i class="fas fa-arrow-left store-arrow"></i>
+        </a>
+
+        <a href="https://vortex-trust.netlify.app/vortex.apk" target="_blank" rel="noopener" class="store-btn store-apk" onclick="trackDownload('apk')">
+          <div class="store-icon"><i class="fab fa-android"></i></div>
+          <div class="store-info">
+            <div class="store-label">DIRECT DOWNLOAD</div>
+            <div class="store-name">APK مباشر</div>
+          </div>
+          <i class="fas fa-arrow-left store-arrow"></i>
+        </a>
+
+        <a href="https://en.aptoide.com/" target="_blank" rel="noopener" class="store-btn store-aptoide" onclick="trackDownload('aptoide')">
+          <div class="store-icon"><i class="fas fa-store"></i></div>
+          <div class="store-info">
+            <div class="store-label">AVAILABLE ON</div>
+            <div class="store-name">Aptoide</div>
+          </div>
+          <i class="fas fa-arrow-left store-arrow"></i>
+        </a>
+
+        <a href="https://en.uptodown.com/" target="_blank" rel="noopener" class="store-btn store-uptodown" onclick="trackDownload('uptodown')">
+          <div class="store-icon"><i class="fas fa-cloud-arrow-down"></i></div>
+          <div class="store-info">
+            <div class="store-label">AVAILABLE ON</div>
+            <div class="store-name">Uptodown</div>
+          </div>
+          <i class="fas fa-arrow-left store-arrow"></i>
+        </a>
+      </div>
+
+      <hr class="divider">
+
+      <h2 style="font-size: 0.9rem;"><i class="fas fa-sparkles" style="color:var(--purple); font-size:0.8rem;"></i> مميزات التطبيق</h2>
+      <div class="feature-grid">
+        <div class="feature-tile">
+          <i class="fas fa-fingerprint"></i>
+          <div class="feature-tile-title">دخول بالبصمة</div>
+          <div class="feature-tile-desc">حماية متعددة الطبقات لحسابك.</div>
+        </div>
+        <div class="feature-tile">
+          <i class="fas fa-bell"></i>
+          <div class="feature-tile-title">إشعارات فورية</div>
+          <div class="feature-tile-desc">تنبيهات لحظية لكل عقد ومعاملة.</div>
+        </div>
+        <div class="feature-tile">
+          <i class="fas fa-bolt"></i>
+          <div class="feature-tile-title">سرعة فائقة</div>
+          <div class="feature-tile-desc">واجهة محلية تعمل دون تأخير.</div>
+        </div>
+        <div class="feature-tile">
+          <i class="fas fa-globe"></i>
+          <div class="feature-tile-title">متعدد اللغات</div>
+          <div class="feature-tile-desc">دعم العربية والإنجليزية وأكثر.</div>
+        </div>
+        <div class="feature-tile">
+          <i class="fas fa-wallet"></i>
+          <div class="feature-tile-title">محفظة آمنة</div>
+          <div class="feature-tile-desc">حفظ مشفر للأرصدة والمعاملات.</div>
+        </div>
+        <div class="feature-tile">
+          <i class="fas fa-headset"></i>
+          <div class="feature-tile-title">دعم 24/7</div>
+          <div class="feature-tile-desc">فريق متاح في أي وقت.</div>
+        </div>
+      </div>
+
+      <div class="warning-banner">
+        <i class="fas fa-triangle-exclamation"></i>
+        <span><strong>تنبيه أمني:</strong> لا تقم بتنزيل التطبيق إلا من المتاجر الرسمية المذكورة أعلاه. أي نسخة من مصدر آخر قد تكون مزيّفة وتعرّض حسابك للخطر.</span>
+      </div>
+    </section>
+
+    <!-- ESCROW -->
+    <section id="escrow" class="card card-green scroll-fade">
+      <div class="card-tag">NEW_CONTRACT</div>
+      <h2><i class="fas fa-file-signature" style="color:var(--accent); font-size:0.9rem;"></i> توليد عقد وساطة مشفر</h2>
+
+      <div class="brief" style="border-color: rgba(0,255,136,0.15); font-size:0.82rem; margin-bottom: 20px;">
+        <i class="fas fa-info-circle" style="color:var(--accent); margin-left:6px;"></i>
+        أملأ البيانات بدقة. سيتم إرسال تفاصيل العقد وتأكيد الوساطة تلقائياً عبر النظام.
+      </div>
+
+      <form action="https://formspree.io/f/xpqklpqg" method="POST" onsubmit="handleSubmit(event,'escrow')">
+        <div class="form-row">
+          <input type="text" name="Buyer" class="cyber-input" placeholder="👤 اسم المشتري" required>
+          <input type="text" name="Seller" class="cyber-input" placeholder="👤 اسم البائع" required>
+        </div>
+        <input type="number" name="Amount" class="cyber-input" placeholder="💰 المبلغ بالـ USDT" required>
+        <input type="text" name="Product" class="cyber-input" placeholder="📦 نوع الأصل / الحساب">
+        <textarea name="Details" class="cyber-input" placeholder="📝 تفاصيل الاتفاقية والشروط الخاصة..." rows="4" required></textarea>
+        <button type="submit" class="cyber-btn" style="border-color:var(--accent); color:var(--accent);">
+          <i class="fas fa-rocket"></i><span>تنشيط العقد الآن</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- LEGAL -->
+    <section id="legal" class="card card-warn scroll-fade">
+      <div class="card-tag" style="color:#000;">LEGAL_DEPT</div>
+      <h2><i class="fas fa-balance-scale" style="color:var(--warning); font-size:0.9rem;"></i> سياسة الاتفاقية والوساطة</h2>
+
+      <ul class="legal-list">
+        <li><div class="legal-num">01</div><div>بمجرد فتح العقد، يتم حجز مبلغ المعاملة في محفظة النظام المشفرة ولا يمكن الوصول إليه إلا عبر البروتوكول.</div></li>
+        <li><div class="legal-num">02</div><div>لا يتحمل النظام أي مسؤولية عن الاتفاقات الخارجية غير الموثقة داخل المنصة.</div></li>
+        <li><div class="legal-num">03</div><div>يتم تحويل المبلغ للبائع فور تأكيد المشتري استلام الخدمة بشكل كامل وصريح.</div></li>
+        <li><div class="legal-num">04</div><div>في حالة النزاع، يتدخل فريق التحكيم خلال 24 ساعة كحد أقصى بصلاحيات كاملة.</div></li>
+      </ul>
+
+      <hr class="divider">
+
+      <h2><i class="fas fa-clipboard-list" style="color:var(--warning); font-size:0.9rem;"></i> شروط الاستخدام</h2>
+      <ul class="legal-list">
+        <li><div class="legal-num" style="color:var(--accent); background:rgba(0,255,136,0.1); border-color:rgba(0,255,136,0.3)"><i class="fas fa-check" style="font-size:0.6rem;"></i></div><div>يُمنع استخدام المنصة في أي نشاط يخالف القوانين الرقمية المحلية والدولية.</div></li>
+        <li><div class="legal-num" style="color:var(--accent); background:rgba(0,255,136,0.1); border-color:rgba(0,255,136,0.3)"><i class="fas fa-check" style="font-size:0.6rem;"></i></div><div>يلتزم المستخدم بتقديم بيانات صحيحة ودقيقة لتجنب تجميد العقد.</div></li>
+        <li><div class="legal-num" style="color:var(--accent); background:rgba(0,255,136,0.1); border-color:rgba(0,255,136,0.3)"><i class="fas fa-check" style="font-size:0.6rem;"></i></div><div>فريق التحكيم هو الفيصل النهائي في حال وجود أي نزاع بين الأطراف.</div></li>
+        <li><div class="legal-num" style="color:var(--accent); background:rgba(0,255,136,0.1); border-color:rgba(0,255,136,0.3)"><i class="fas fa-check" style="font-size:0.6rem;"></i></div><div>جميع المعاملات مسجلة ومشفرة لضمان الشفافية والأمان التام.</div></li>
+      </ul>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews-sec" class="card card-green scroll-fade">
+      <div class="card-tag" style="color:#000;">COMMUNITY</div>
+      <h2><i class="fas fa-comments" style="color:var(--accent); font-size:0.9rem;"></i> آراء المجتمع</h2>
+
+      <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px;">
+        <div class="star-row">
+          <input type="radio" id="s5" name="rate" value="5" checked><label for="s5">★</label>
+          <input type="radio" id="s4" name="rate" value="4"><label for="s4">★</label>
+          <input type="radio" id="s3" name="rate" value="3"><label for="s3">★</label>
+          <input type="radio" id="s2" name="rate" value="2"><label for="s2">★</label>
+          <input type="radio" id="s1" name="rate" value="1"><label for="s1">★</label>
+        </div>
+        <input type="text" id="rev-name" class="cyber-input" placeholder="اسم المستخدم (اختياري)">
+        <textarea id="rev-msg" class="cyber-input" placeholder="شارك تجربتك مع VORTEX..." rows="3"></textarea>
+        <button class="cyber-btn" style="border-color:var(--accent); color:var(--accent);" onclick="submitReview()">
+          <i class="fas fa-paper-plane"></i><span>نشر التقييم</span>
+        </button>
+      </div>
+
+      <div id="reviews-list"></div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="card card-red scroll-fade">
+      <div class="card-tag" style="color:#fff;">SUPPORT</div>
+      <h2><i class="fas fa-headset" style="color:var(--danger); font-size:0.9rem;"></i> الدعم والتحكيم المباشر</h2>
+
+      <a href="https://t.me/Electricsoul7" target="_blank" class="tg-btn">
+        <i class="fab fa-telegram-plane"></i>
+        <span>مراسلة المسؤول عبر Telegram</span>
+      </a>
+
+      <hr class="divider">
+
+      <form action="https://formspree.io/f/xpqklpqg" method="POST" onsubmit="handleSubmit(event,'support')">
+        <input type="email" name="Email" class="cyber-input" placeholder="📧 بريدك الإلكتروني" required>
+        <textarea name="Query" class="cyber-input" placeholder="💭 اشرح مشكلتك أو استفسارك بالتفصيل..." rows="4" required></textarea>
+        <button type="submit" class="cyber-btn">
+          <i class="fas fa-paper-plane"></i><span>إرسال بلاغ فوري</span>
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">⚡ VORTEX ⚡</div>
+    <div class="online-badge">
+      <div class="pulse-dot"></div>
+      <span>النظام متصل • جميع الخوادم تعمل بكفاءة</span>
+    </div>
+    <div class="footer-nav">
+      <a href="#home"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="#app"><i class="fas fa-mobile-screen"></i> التطبيق</a>
+      <a href="#escrow"><i class="fas fa-file-signature"></i> العقود</a>
+      <a href="#legal"><i class="fas fa-shield-alt"></i> القانون</a>
+      <a href="#reviews-sec"><i class="fas fa-star"></i> التقييمات</a>
+      <a href="https://t.me/Electricsoul7" target="_blank"><i class="fab fa-telegram"></i> المسؤول</a>
+    </div>
+    <p class="copyright">
+      VORTEX PROTOCOL // ENCRYPTED NODE 2026<br>
+      ALL TRANSACTIONS SECURED & ENCRYPTED<br>
+      <span style="color:#1a2233; font-size:0.6rem;">Powered by Advanced Blockchain Technology</span>
+    </p>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-msg">تم بنجاح</span>
+  </div>
+
+  <script>
+    // ===== MATRIX =====
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    let drops = [];
+
+    function initMatrix() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const cols = Math.floor(canvas.width / 18);
+      drops = Array(cols).fill(1);
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(3,7,16,0.12)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(0,243,255,0.6)';
+      ctx.font = '13px Share Tech Mono';
+      drops.forEach((y, i) => {
+        const ch = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(ch, i * 18, y * 18);
+        if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+    }
+
+    initMatrix();
+    setInterval(drawMatrix, 50);
+    window.addEventListener('resize', initMatrix);
+
+    // ===== TOAST =====
+    function showToast(msg, color='var(--primary)') {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      t.style.borderColor = color;
+      t.style.color = color;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ===== COUNTER ANIM =====
+    function animCount(el, target, suffix='', duration=2000) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start).toLocaleString('en') + suffix;
+        if (start >= target) clearInterval(timer);
+      }, 16);
+    }
+
+    // ===== NAV =====
+    function goTo(id, color, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 130;
+      window.scrollTo({ top, behavior: 'smooth' });
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ===== SCROLL ANIMATIONS =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animate stats on home
+          if (entry.target.id === 'home') {
+            setTimeout(() => animCount(document.getElementById('cnt1'), 2547, '+', 2000), 300);
+            setTimeout(() => animCount(document.getElementById('cnt2'), 99, '%', 1500), 300);
+          }
+
+          // Animate progress bars
+          entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+            setTimeout(() => { bar.style.width = bar.dataset.target + '%'; }, 400);
+          });
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+
+    // ===== REVIEWS =====
+    let editIdx = -1;
+
+    function loadReviews() {
+      const reviews = JSON.parse(localStorage.getItem('vx_reviews') || '[]');
+      const list = document.getElementById('reviews-list');
+
+      if (!reviews.length) {
+        list.innerHTML = `<div class="empty-state"><i class="fas fa-comment-slash"></i><p>لا توجد تقييمات بعد. كن أول من يشارك تجربته!</p></div>`;
+        return;
+      }
+
+      list.innerHTML = reviews.map((r, i) => `
+        <div class="review-card">
+          <div class="review-actions">
+            <button class="rev-btn edit" onclick="editReview(${i})" title="تعديل"><i class="fas fa-edit"></i></button>
+            <button class="rev-btn del" onclick="deleteReview(${i})" title="حذف"><i class="fas fa-trash"></i></button>
+          </div>
+          <div class="review-header">
+            <span class="review-name"><i class="fas fa-user-circle"></i> ${r.name}</span>
+            <span class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span>
+          </div>
+          <div class="review-text">${r.msg}</div>
+        </div>
+      `).join('');
+    }
+
+    function submitReview() {
+      const name = document.getElementById('rev-name').value.trim() || 'مستخدم مجهول';
+      const msg = document.getElementById('rev-msg').value.trim();
+      const stars = +document.querySelector('input[name="rate"]:checked').value;
+
+      if (!msg) { showToast('⚠️ الرجاء كتابة تعليق', 'var(--warning)'); return; }
+
+      const reviews = JSON.parse(localStorage.getItem('vx_reviews') || '[]');
+      if (editIdx > -1) { reviews[editIdx] = { name, msg, stars }; editIdx = -1; }
+      else reviews.unshift({ name, msg, stars });
+
+      localStorage.setItem('vx_reviews', JSON.stringify(reviews));
+      document.getElementById('rev-msg').value = '';
+      document.getElementById('rev-name').value = '';
+      document.getElementById('s5').checked = true;
+      loadReviews();
+      showToast('✅ تم نشر تقييمك بنجاح', 'var(--accent)');
+    }
+
+    window.deleteReview = (i) => {
+      if (!confirm('هل أنت متأكد من حذف هذا التقييم؟')) return;
+      const reviews = JSON.parse(localStorage.getItem('vx_reviews') || '[]');
+      reviews.splice(i, 1);
+      localStorage.setItem('vx_reviews', JSON.stringify(reviews));
+      loadReviews();
+      showToast('🗑️ تم حذف التقييم', 'var(--danger)');
+    };
+
+    window.editReview = (i) => {
+      const reviews = JSON.parse(localStorage.getItem('vx_reviews') || '[]');
+      const r = reviews[i];
+      document.getElementById('rev-name').value = r.name;
+      document.getElementById('rev-msg').value = r.msg;
+      document.querySelector(`input[name="rate"][value="${r.stars}"]`).checked = true;
+      editIdx = i;
+      document.getElementById('reviews-sec').scrollIntoView({ behavior: 'smooth' });
+      showToast('✏️ يمكنك تعديل التقييم الآن', 'var(--warning)');
+    };
+
+    // ===== FORM SUBMIT =====
+    function handleSubmit(e, type) {
+      // Let form submit normally, just show toast
+      setTimeout(() => showToast(type === 'escrow' ? '📋 تم إرسال العقد بنجاح!' : '📨 تم إرسال بلاغك بنجاح!', 'var(--accent)'), 100);
+    }
+
+    // ===== DOWNLOAD TRACKING =====
+    function trackDownload(store) {
+      const labels = {
+        google: '✅ جارٍ التحويل إلى Google Play',
+        apk: '⬇️ جارٍ تحميل APK المباشر',
+        aptoide: '🟠 جارٍ التحويل إلى Aptoide',
+        uptodown: '🔵 جارٍ التحويل إلى Uptodown'
+      };
+      showToast(labels[store] || '⬇️ جارٍ التحميل', 'var(--purple)');
+    }
+
+    // ===== CLICK SOUND =====
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let lastBeep = 0;
+    document.addEventListener('click', () => {
+      const now = Date.now();
+      if (now - lastBeep < 80) return;
+      lastBeep = now;
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.006, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.06);
+    });
+
+    // ===== INIT =====
+    loadReviews();
+  </script>
+</body>
+</html>

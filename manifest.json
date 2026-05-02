@@ -1,0 +1,28 @@
+{
+  "name": "VORTEX | Advanced Operations Center",
+  "short_name": "VORTEX",
+  "description": "نظام وساطة مالية مشفر متطور لتأمين بيع وشراء الحسابات والأصول الرقمية بأعلى معايير الأمان.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#030710",
+  "theme_color": "#00f3ff",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    {
+      "src": "1777083916689.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "1777083916689.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
